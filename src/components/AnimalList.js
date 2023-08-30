@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Animal from "./Animal";
+import Form from "./Form";
+
 
 const AnimalList = () => {
 let date = JSON.stringify(new Date());
@@ -26,6 +28,10 @@ const topAnimal = temp.splice(index, 1);
 temp.unshift(topAnimal[0]);
 setAnimals(temp);
 }
+
+const addAnimal = (animal) => {
+setAnimals((prevValue) => [...prevValue, animal]);
+}
 /* console.log(removeAnimal()) */
 /* console.log(animals[0]["name"]) */
 /* removeAnimal('rex') */
@@ -33,36 +39,44 @@ setAnimals(temp);
 return (
 
 <div>
-    <table>
-        <tbody>
-            <tr>
-                <th> Species </th>
-                <th> Name </th>
-                <th> Birth </th>
-                <th> Remove Animal</th>
-                <th> Move to top</th>
+    <div>
+        <Form addAnimal={addAnimal} />
+    </div>
+    <div>
+        <table>
+            <tbody>
+                <tr>
+                    <th> Species </th>
+                    <th> Name </th>
+                    <th> Birth </th>
+                    <th> Remove Animal</th>
+                    <th> Move to top</th>
 
-            </tr>
+                </tr>
 
-            {/* { {console.log(date.slice(1, 11))}} */}
-            {
+                {/* { {console.log(date.slice(1, 11))}} */}
+                {
 
-            animals.map((element, index) => {
-            return (
-            <Animal key={index} remove={<button onClick={()=> removeAnimal(index)}>remove</button>}
-                top = {<button onClick={()=> thisToTop(index)}>top</button>}
-                species = {element.species}
-                name = {element.name}
+                animals.map((element, index) => {
+                return (
+                <Animal key={index} remove={<button onClick={()=> removeAnimal(index)}>remove</button>}
+                    top = {<button onClick={()=> thisToTop(index)}>top</button>}
+                    species = {element.species}
+                    name = {element.name}
 
-                birthdate = {element.birthdate ? element.birthdate.slice(1, 11) : "nepoznat"}
+                    birthdate = {element.birthdate ? element.birthdate.slice(1, 11) : "nepoznat"}
 
-                />
-                );
-                })
-                }
-        </tbody>
-    </table>
+                    />
+                    );
+                    })
+                    }
+            </tbody>
+        </table>
+    </div>
+
+
 </div>
+
 );
 };
 
