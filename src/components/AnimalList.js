@@ -50,11 +50,11 @@ return (
             animals.map((element, index) => {
             return (
             <Animal key={index} remove={<button onClick={()=> removeAnimal(index)}>remove</button>}
-                top={<button onClick={()=> thisToTop(index)}>top</button>}
-                species={element.species}
-                name={element.name}
+                top = {<button onClick={()=> thisToTop(index)}>top</button>}
+                species = {element.species}
+                name = {element.name}
 
-                birthdate={element.birthdate ? element.birthdate.slice(1, 11) : "nepoznat"}
+                birthdate = {element.birthdate ? element.birthdate.slice(1, 11) : "nepoznat"}
 
                 />
                 );
